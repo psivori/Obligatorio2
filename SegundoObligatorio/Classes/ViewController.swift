@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftLocation
 
 class ViewController: UIViewController {
 
@@ -20,8 +21,7 @@ class ViewController: UIViewController {
 //        ver: http://openweathermap.org/current#parameter
 //        http://openweathermap.org/weather-conditions
         
-        
-        
+        //http://api.openweathermap.org/data/2.5/forecast/daily?q=Montevideo&mode=json&units=metric&cnt=7&APPID=7ee24321e531ad99d44cbfc4aece88f9
         
         self.weatherIconLabel.text = WeatherIcon(condition: 200, iconString: "01n").iconText
     }
@@ -29,6 +29,33 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        do {
+           // aIndicator.startAnimating()
+            try SwiftLocation.shared.currentLocation(Accuracy.Neighborhood, timeout: 20, onSuccess: { (location) -> Void in
+                // location is a CLPlacemark
+                var city = location?.description
+                print(city)
+                //self.aIndicator.stopAnimating()
+                }) { (error) -> Void in
+                    // something went wrong
+                    //self.aIndicator.stopAnimating()
+                    let alertController = UIAlertController(title: "Error", message:
+                        error?.description, preferredStyle: UIAlertControllerStyle.Alert)
+                    alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
+                    self.presentViewController(alertController, animated: true, completion: nil)
+            }
+        } catch {
+            //aIndicator.stopAnimating()
+            let alertController = UIAlertController(title: "Error", message:
+                "Error getting current location", preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
+
     }
 
 
