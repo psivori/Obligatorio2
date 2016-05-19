@@ -20,6 +20,9 @@ class ViewController: UIViewController {
 //        ver: http://openweathermap.org/current#parameter
 //        http://openweathermap.org/weather-conditions
         
+        
+        
+        
         self.weatherIconLabel.text = WeatherIcon(condition: 200, iconString: "01n").iconText
     }
 
