@@ -21,8 +21,8 @@ class ViewController: UIViewController {
 //        ver: http://openweathermap.org/current#parameter
 //        http://openweathermap.org/weather-conditions
         
-        //http://api.openweathermap.org/data/2.5/forecast/daily?q=Montevideo&mode=json&units=metric&cnt=7&APPID=7ee24321e531ad99d44cbfc4aece88f9
-        
+
+
         self.weatherIconLabel.text = WeatherIcon(condition: 200, iconString: "01n").iconText
     }
 
@@ -36,9 +36,14 @@ class ViewController: UIViewController {
         do {
            // aIndicator.startAnimating()
             try SwiftLocation.shared.currentLocation(Accuracy.Neighborhood, timeout: 20, onSuccess: { (location) -> Void in
-                // location is a CLPlacemark
-                var city = location?.description
-                print(city)
+                SwiftLocation.shared.reverseCoordinates(Service.Apple, coordinates: location!.coordinate, onSuccess: { (place) -> Void in
+                    // our placemark is here
+                    print(place!.locality)
+    
+                    }) { (error) -> Void in
+                        // something went wrong
+                }
+                
                 //self.aIndicator.stopAnimating()
                 }) { (error) -> Void in
                     // something went wrong
