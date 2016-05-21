@@ -11,5 +11,10 @@ import UIKit
 class MyCollectionViewCell: UICollectionViewCell {
     
     
+    @IBOutlet weak var lblDay: UILabel!
+    @IBOutlet weak var lblIcon: UILabel!
+    @IBOutlet weak var lblTemp: UILabel!
+    
+    
 
 }

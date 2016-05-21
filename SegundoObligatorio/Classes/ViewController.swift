@@ -34,9 +34,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
         
     // tell the collection view how many cells to make
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.items.count
-    }
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+        //return self.items.count
+        return 2
+        }
     
     // make a cell for each cell index path
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -45,6 +46,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! MyCollectionViewCell
         
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
+        cell.lblDay.text = "Lunes"
         cell.myLabel.text = self.items[indexPath.item]
         cell.backgroundColor = UIColor.yellowColor() // make cell more visible in our example project
         
