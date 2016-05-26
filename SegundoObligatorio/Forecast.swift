@@ -24,8 +24,8 @@ class Forecast: Mappable {
     //units=imperial
     
     //units=metric    
-    var icon: Int64?
-    var day: Int64?
+    var icon: NSNumber?
+    var day: NSNumber?
     var temp: String?
     //var units: String?
     required init?(_ map: Map) {

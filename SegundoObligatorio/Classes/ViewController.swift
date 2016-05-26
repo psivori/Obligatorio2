@@ -88,10 +88,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                             print(forecast.temp ?? "No Temp")
                             
                             if(forecast.temp != nil ){
-                                
                                 let json = JSON(forecast.temp!)
                                 //Json[0][“name”]
-                                self.lblTemperature.text = forecast.temp
+                                self.lblTemperature.text = String(forecast.temp)
                             
                             }else{
                             
@@ -101,7 +100,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                             
                             if(forecast.icon != nil ){
                                 
-                                self.weatherIconLabel.text = WeatherIcon(condition: 200, iconString: forecast.icon ).iconText
+                                self.weatherIconLabel.text = WeatherIcon(condition: 200, iconString: String(forecast.icon) ).iconText
                             }else{
                                 
                                //Poner un icono de no disponible
