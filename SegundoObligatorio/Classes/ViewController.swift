@@ -84,29 +84,20 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 APIWheater.sharedWheater.forecastOnCompletion { (forecasts, error) -> Void in
                     
                     if let forecasts = forecasts {
-                        for forecast in forecasts{
-                            print(forecast.temp ?? "No Temp")
-                            
-                            if(forecast.temp != nil ){
-                                let json = JSON(forecast.temp!)
-                                //Json[0][“name”]
-                                self.lblTemperature.text = String(forecast.temp)
-                            
-                            }else{
-                            
-                                self.lblTemperature.text = "No Temp"
-                            
-                            }
-                            
-                            if(forecast.icon != nil ){
-                                
-                                self.weatherIconLabel.text = WeatherIcon(condition: 200, iconString: String(forecast.icon) ).iconText
-                            }else{
-                                
-                               //Poner un icono de no disponible
-                                
-                            }
-                            
+                        //Forecast for current date always in first position
+                        //Showing temperature
+                        if(forecasts[0].temp != nil ){
+                            self.lblTemperature.text = String(forecasts[0].temp!)
+                        }else{
+                            self.lblTemperature.text = "No temperature"
+                        }
+                        //Showing icon
+                        print(forecasts[0].icon)
+                        print(forecasts[0].day)
+                        if(forecasts[0].icon != nil ){
+                            self.weatherIconLabel.text = WeatherIcon(condition: 200, iconString: String(forecasts[0].icon) ).iconText
+                        }else{
+                            //Poner un icono de no disponible
                         }
                     }else {
                         let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .Alert)
