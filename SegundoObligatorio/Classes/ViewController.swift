@@ -81,7 +81,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                         // something went wrong
                 }
                 
-                APIWheater.sharedWheater.forecastOnCompletion { (forecasts, error) -> Void in
+                var units = "imperial"
+                //units=imperial
+                //units=metric
+                APIWheater.sharedWheater.forecastOnCompletion(String(location!.coordinate.latitude), longitude: String(location!.coordinate.longitude), units: units) { (forecasts, error) -> Void in
                     
                     if let forecasts = forecasts {
                         //Forecast for current date always in first position
@@ -89,7 +92,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                         if(forecasts[0].temp != nil ){
                             let temp = String(Int(forecasts[0].temp!)) + "\u{2103}"// Celsius
                             //let temp = String(Int(forecasts[0].temp!)) + "\u{2109}"// FAHRENHEIT
-                            
+
                             self.lblTemperature.text = temp
                         }else{
                             self.lblTemperature.text = "No temperature"
