@@ -23,22 +23,18 @@ class Forecast: Mappable {
     
     //units=imperial
     //units=metric    
-    var icon: NSObject?
+    var wheater: NSArray?
     var day: NSNumber?
     var temp: NSNumber?
+    var icon: NSString?
     required init?(_ map: Map) {
-        
-        
     }
         
     func mapping(map: Map) {
-        
-        self.icon <- map["weather.icon"]
-        
+        self.wheater <-  map["weather"]
+        self.icon = (self.wheater?.firstObject as! NSDictionary)["icon"] as! NSString
         self.day <- map["dt"]
-        
         self.temp <- map["temp.day"]
-        
     }
     
     
