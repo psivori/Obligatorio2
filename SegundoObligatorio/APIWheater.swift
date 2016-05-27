@@ -61,7 +61,7 @@ class APIWheater {
                 var list = value["list"]!
                 
                 print(list)
-                //print("hola")
+                
                 if let forecasts = Mapper<Forecast>().mapArray(list) {
                     
                     onCompletion(forecasts: forecasts, error: nil)
