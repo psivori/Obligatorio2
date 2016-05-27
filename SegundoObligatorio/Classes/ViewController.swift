@@ -17,6 +17,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var weatherIconLabel: UILabel!
     @IBOutlet weak var lblCity: UILabel!
     let reuseIdentifier = "cell"
+    var lstDays = [Day]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +43,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     // tell the collection view how many cells to make
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         //return self.items.count
-        return 5
+        return self.lstDays.count
         }
     
     // make a cell for each cell index path
@@ -81,12 +82,20 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                         // something went wrong
                 }
                 
-                var units = "imperial"
+                var units = "imperial"//FAHRENHEIT
                 //units=imperial
                 //units=metric
                 APIWheater.sharedWheater.forecastOnCompletion(String(location!.coordinate.latitude), longitude: String(location!.coordinate.longitude), units: units) { (forecasts, error) -> Void in
                     
                     if let forecasts = forecasts {
+                        
+                        //Load Days
+                        for Forecast in forecasts{
+                        
+                        //var day1 = Day(name: forecasts[1].day, andicon: <#T##String?#>, andtemp: <#T##String?#>)
+                        
+                        }
+                        
                         //Forecast for current date always in first position
                         //Showing temperature
                         if(forecasts[0].temp != nil ){
