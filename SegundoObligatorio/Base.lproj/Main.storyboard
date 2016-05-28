@@ -163,7 +163,7 @@
         <!--Ajustes-->
         <scene sceneID="nDv-Fr-jIH">
             <objects>
-                <viewController id="oRx-v4-cMl" sceneMemberID="viewController">
+                <viewController id="oRx-v4-cMl" customClass="SettingsViewController" customModule="SegundoObligatorio" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="h8F-oJ-0qn"/>
                         <viewControllerLayoutGuide type="bottom" id="vL3-HJ-ZbX"/>
@@ -207,21 +207,20 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Ajustes" id="2jy-oq-rtP">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="jmc-50-mT8">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TJc-80-B5M">
-                                <rect key="frame" x="20" y="7" width="133" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Cancelar"/>
-                            </button>
+                        <barButtonItem key="leftBarButtonItem" title="Cancelar" id="3Dy-VV-h4h">
+                            <connections>
+                                <action selector="cancel:" destination="oRx-v4-cMl" id="cjJ-OE-SCL"/>
+                            </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="YFz-eD-xEH">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="95u-1X-AjV">
-                                <rect key="frame" x="447" y="7" width="133" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Guardar"/>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" title="Guardar" id="QH5-ox-WnV">
+                            <connections>
+                                <action selector="save:" destination="oRx-v4-cMl" id="cXg-HN-pKg"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="units" destination="dkI-N2-mbZ" id="kRY-Kx-LzH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P6D-Od-18P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
