@@ -11,12 +11,14 @@ import Foundation
 class Day{
     
     var name : String? = ""
+    var condition : Int? = -1
     var icon : String? = ""
     var temp : String? = ""
     
-    init(name: String? = nil, andicon icon : String? = nil ,andtemp temp: String? = nil ){
+    init(name: String? = nil, andicon icon : String? = nil ,andtemp temp: String? = nil, andCondition condition : Int? = nil ){
         
         self.name = name
+        self.condition = condition
         self.icon = icon
         self.temp = temp
     }
