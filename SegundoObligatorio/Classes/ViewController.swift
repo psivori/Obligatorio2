@@ -42,7 +42,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     // tell the collection view how many cells to make
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         //return self.items.count
-        return 2
+        return 5
         }
     
     // make a cell for each cell index path
@@ -54,7 +54,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
         cell.lblDay.text = "Lunes"
         //cell.myLabel.text = self.items[indexPath.item]
-        cell.backgroundColor = UIColor.yellowColor() // make cell more visible in our example project
+        //cell.backgroundColor = UIColor.yellowColor() // make cell more visible in our example project
         
         return cell
     }
@@ -90,7 +90,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                         //Forecast for current date always in first position
                         //Showing temperature
                         if(forecasts[0].temp != nil ){
-                            let temp = String(Int(forecasts[0].temp!)) + "\u{2103}"
+                            let temp = String(Int(forecasts[0].temp!)) + "\u{2103}"// Celsius
+                            //let temp = String(Int(forecasts[0].temp!)) + "\u{2109}"// FAHRENHEIT
+
                             self.lblTemperature.text = temp
                         }else{
                             self.lblTemperature.text = "No temperature"
