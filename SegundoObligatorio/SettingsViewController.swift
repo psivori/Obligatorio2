@@ -17,6 +17,8 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func cancel(sender: AnyObject) {
+        var viewController = self.storyboard!.instantiateViewControllerWithIdentifier("viewController")
+        navigationController?.popToViewController(viewController, animated: true)
     }
     
     @IBAction func save(sender: AnyObject) {
