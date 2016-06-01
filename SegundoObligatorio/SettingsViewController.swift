@@ -30,9 +30,9 @@ class SettingsViewController: UIViewController {
         
         //showing map with zoom and marker
         var coordinates = defaults.objectForKey("coordinates") as! CLLocationCoordinate2D
-        var pinLocation : CLLocationCoordinate2D = CLLocationCoordinate2DMake(coordinates.latitude, coordinates.longitude)
+        //var pinLocation : CLLocationCoordinate2D = CLLocationCoordinate2DMake(coordinates.latitude, coordinates.longitude)
         var objectAnnotation = MKPointAnnotation()
-        objectAnnotation.coordinate = pinLocation
+        objectAnnotation.coordinate = coordinates
         objectAnnotation.title = "yo"
         self.map.addAnnotation(objectAnnotation)
         self.map.setCenterCoordinate(coordinates, animated: true)
