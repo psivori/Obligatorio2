@@ -120,10 +120,15 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="KQn-vw-Vmf"/>
                                 </connections>
                             </collectionView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="NNy-2J-pPX">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.1529411765" green="0.58431372550000005" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="ipH-gU-egB" firstAttribute="top" secondItem="iex-RD-AQI" secondAttribute="bottom" constant="80" id="5ax-wL-Ezm"/>
+                            <constraint firstItem="NNy-2J-pPX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7hd-7x-cag"/>
+                            <constraint firstItem="NNy-2J-pPX" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="AN6-ih-RGm"/>
                             <constraint firstItem="VJ8-z5-JlH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="DqM-EQ-IWm"/>
                             <constraint firstItem="Dcx-4J-z88" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Hhh-7d-LXz"/>
                             <constraint firstItem="iex-RD-AQI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="M9L-SM-89z"/>
@@ -151,6 +156,7 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="1Lm-hA-qof"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="NNy-2J-pPX" id="t6z-Zh-ZCh"/>
                         <outlet property="collectionView" destination="Bmp-jU-JVW" id="fKw-DD-7ud"/>
                         <outlet property="lblCity" destination="iex-RD-AQI" id="T2k-8v-s68"/>
                         <outlet property="lblTemperature" destination="Dcx-4J-z88" id="PKg-Xz-haJ"/>

@@ -17,10 +17,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var weatherIconLabel: UILabel!
     @IBOutlet weak var lblCity: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     let reuseIdentifier = "cell"
     var lstDays = [Day]()
     let defaults = NSUserDefaults.standardUserDefaults()
-    var units : String = "imperial"//FAHRENHEIT
+    var units : String = "metric"//FAHRENHEIT
     //units=imperial
     //units=metric
     
@@ -32,9 +33,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 //        ver: http://openweathermap.org/current#parameter
 //        http://openweathermap.org/weather-conditions
         
-
-        //self.units = defaults.stringForKey("units")!
-        self.weatherIconLabel.text = WeatherIcon(condition: 200, iconString: "01n").iconText
+        
+       
+        //self.weatherIconLabel.text = WeatherIcon(condition: 200, iconString: "01n").iconText
     }
     
     override func didReceiveMemoryWarning() {
@@ -90,9 +91,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     override func viewDidAppear(animated: Bool) {
+        
+        self.activityIndicator.startAnimating()
+        if (defaults.stringForKey("units") != nil){
+            
+            self.units = defaults.stringForKey("units")!
+        }
+        
         super.viewDidAppear(true)
         do {
-            // aIndicator.startAnimating()
+            
             try SwiftLocation.shared.currentLocation(Accuracy.Neighborhood, timeout: 20, onSuccess: { (location) -> Void in
                 SwiftLocation.shared.reverseCoordinates(Service.Apple, coordinates: location!.coordinate, onSuccess: { (place) -> Void in
                     // our placemark is here
@@ -149,18 +157,18 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                     
                 }
                 
-                
-                //self.aIndicator.stopAnimating()
+                sleep(2)
+                self.activityIndicator.stopAnimating()
                 }) { (error) -> Void in
                     // something went wrong
-                    //self.aIndicator.stopAnimating()
+                    self.activityIndicator.stopAnimating()
                     let alertController = UIAlertController(title: "Error", message:
                         error?.description, preferredStyle: UIAlertControllerStyle.Alert)
                     alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
                     self.presentViewController(alertController, animated: true, completion: nil)
             }
         } catch {
-            //aIndicator.stopAnimating()
+            self.activityIndicator.stopAnimating()
             let alertController = UIAlertController(title: "Error", message:
                 "Error getting current location", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
