@@ -15,6 +15,13 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        var savedUnits = defaults.stringForKey("units")
+        if savedUnits == String(Units.metric){
+            units.selectedSegmentIndex = 0
+        }else{
+            units.selectedSegmentIndex = 1
+        }
+        
     }
     
     @IBAction func cancel(sender: AnyObject) {
