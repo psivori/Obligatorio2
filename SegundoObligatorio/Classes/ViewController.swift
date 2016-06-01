@@ -87,7 +87,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         // handle tap events
-        print("You selected cell #\(indexPath.item)!")
+        //print("You selected cell #\(indexPath.item)!")
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -104,7 +104,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             try SwiftLocation.shared.currentLocation(Accuracy.Neighborhood, timeout: 20, onSuccess: { (location) -> Void in
                 SwiftLocation.shared.reverseCoordinates(Service.Apple, coordinates: location!.coordinate, onSuccess: { (place) -> Void in
                     // our placemark is here
-                    print(place!.locality)
+                    //print(place!.locality)
                     self.lblCity.text = place!.locality
                     
                     
@@ -138,8 +138,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                             self.lblTemperature.text = "No temperature"
                         }
                         //Showing icon
-                        print(forecasts[0].icon)
-                        print(forecasts[0].day)
+                        //print(forecasts[0].icon)
+                        //print(forecasts[0].day)
                         if(forecasts[0].icon != nil ){
                             
                             self.weatherIconLabel.text = WeatherIcon(condition: Int(self.lstDays[0].condition!), iconString: String(self.lstDays[0].icon) ).iconText
