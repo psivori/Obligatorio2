@@ -102,6 +102,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         do {
             
             try SwiftLocation.shared.currentLocation(Accuracy.Neighborhood, timeout: 20, onSuccess: { (location) -> Void in
+                self.defaults.setDouble(location!.coordinate.latitude, forKey: "currentLatitude")
+                self.defaults.setDouble(location!.coordinate.longitude, forKey: "currentLongitude")
+
                 SwiftLocation.shared.reverseCoordinates(Service.Apple, coordinates: location!.coordinate, onSuccess: { (place) -> Void in
                     // our placemark is here
                     print(place!.locality)
