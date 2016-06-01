@@ -16,7 +16,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var lblTemperature: UILabel!
     @IBOutlet weak var weatherIconLabel: UILabel!
     @IBOutlet weak var lblCity: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
     let reuseIdentifier = "cell"
+    var lstDays = [Day]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +44,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     // tell the collection view how many cells to make
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         //return self.items.count
-        return 5
+        return self.lstDays.count
         }
     
     // make a cell for each cell index path
@@ -52,7 +54,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! MyCollectionViewCell
         
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
-        cell.lblDay.text = "Lunes"
+        cell.lblDay.text = self.lstDays[indexPath.item].name
+        cell.lblTemp.text = self.lstDays[indexPath.item].temp
+        cell.lblIcon.text = WeatherIcon(condition: Int(self.lstDays[indexPath.item].condition!), iconString: String(self.lstDays[indexPath.item].icon) ).iconText
         //cell.myLabel.text = self.items[indexPath.item]
         //cell.backgroundColor = UIColor.yellowColor() // make cell more visible in our example project
         
@@ -60,6 +64,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     // MARK: - UICollectionViewDelegate protocol
+    
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         // handle tap events
@@ -81,17 +86,28 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                         // something went wrong
                 }
                 
-                var units = "imperial"
+                var units = "imperial"//FAHRENHEIT
                 //units=imperial
                 //units=metric
                 APIWheater.sharedWheater.forecastOnCompletion(String(location!.coordinate.latitude), longitude: String(location!.coordinate.longitude), units: units) { (forecasts, error) -> Void in
                     
                     if let forecasts = forecasts {
+                        
+                        //Load Days
+                        for fcast in forecasts{
+                            let day = Day(name: fcast.day!, andicon: String(fcast.icon!), andtemp: String(fcast.temp!), andCondition: Int(fcast.condition!))
+                            self.lstDays.append(day)
+                        }
+                        
                         //Forecast for current date always in first position
                         //Showing temperature
                         if(forecasts[0].temp != nil ){
-                            let temp = String(Int(forecasts[0].temp!)) + "\u{2103}"// Celsius
-                            //let temp = String(Int(forecasts[0].temp!)) + "\u{2109}"// FAHRENHEIT
+                            let temp : String
+                            if(units == "imperial"){
+                                    temp = String(Int(forecasts[0].temp!)) + " \u{2109}"// FAHRENHEIT
+                            }else{
+                                    temp = String(Int(forecasts[0].temp!)) + " \u{2103}"// Celsius
+                            }
 
                             self.lblTemperature.text = temp
                         }else{
@@ -101,10 +117,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                         print(forecasts[0].icon)
                         print(forecasts[0].day)
                         if(forecasts[0].icon != nil ){
-                            self.weatherIconLabel.text = WeatherIcon(condition: 200, iconString: String(forecasts[0].icon) ).iconText
+                            
+                            self.weatherIconLabel.text = WeatherIcon(condition: Int(self.lstDays[0].condition!), iconString: String(self.lstDays[0].icon) ).iconText
                         }else{
                             //Poner un icono de no disponible
                         }
+                        
+                        self.collectionView.reloadData()
+                        
                     }else {
                         let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .Alert)
                         alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))

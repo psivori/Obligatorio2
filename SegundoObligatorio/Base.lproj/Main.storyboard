@@ -151,6 +151,7 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="1Lm-hA-qof"/>
                     <connections>
+                        <outlet property="collectionView" destination="Bmp-jU-JVW" id="fKw-DD-7ud"/>
                         <outlet property="lblCity" destination="iex-RD-AQI" id="T2k-8v-s68"/>
                         <outlet property="lblTemperature" destination="Dcx-4J-z88" id="PKg-Xz-haJ"/>
                         <outlet property="weatherIconLabel" destination="ipH-gU-egB" id="Hn1-sv-GSm"/>
