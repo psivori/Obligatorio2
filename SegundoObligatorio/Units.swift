@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Units{
+enum Units: Int{
     case metric
     case imperial
 }

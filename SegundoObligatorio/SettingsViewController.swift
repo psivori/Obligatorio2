@@ -22,13 +22,17 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func save(sender: AnyObject) {
-        defaults.setObject("metric", forKey: "units")
-        let alert = UIAlertController(title: nil, message: "Se actualizaron las unidades correctamente.", preferredStyle: UIAlertControllerStyle.Alert)
-        let okAction = UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.Default) { (action) in
-             self.dismissViewControllerAnimated(true, completion: {})
+        if let selected = Units(rawValue: units.selectedSegmentIndex){
+            defaults.setObject(String(selected), forKey: "units")
+            let alert = UIAlertController(title: nil, message: "Se actualizaron las unidades correctamente.", preferredStyle: UIAlertControllerStyle.Alert)
+            let okAction = UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.Default) { (action) in
+                self.dismissViewControllerAnimated(true, completion: {})
+            }
+            alert.addAction(okAction)
+            self.presentViewController(alert, animated: true, completion: nil)
         }
-        alert.addAction(okAction)
-        self.presentViewController(alert, animated: true, completion: nil)
+        
+       //
     }
     
 }
