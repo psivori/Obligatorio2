@@ -16,7 +16,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SegundoObligatorio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="viewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="SegundoObligatorio" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -49,7 +49,7 @@
                                 <rect key="frame" x="518" y="50" width="32" height="33"/>
                                 <state key="normal" image="btn-settings"/>
                                 <connections>
-                                    <segue destination="Czk-ig-PU4" kind="presentation" id="Hyh-W4-cbw"/>
+                                    <segue destination="Czk-ig-PU4" kind="presentation" identifier="showSettings" modalTransitionStyle="crossDissolve" id="Hyh-W4-cbw"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEMP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dcx-4J-z88">
@@ -173,16 +173,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dkI-N2-mbZ">
-                                <rect key="frame" x="459" y="84" width="121" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="dkI-N2-mbZ" secondAttribute="height" multiplier="153:28" constant="-32" id="q0R-mk-MZh"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="Cº"/>
-                                    <segment title="Fº"/>
-                                </segments>
-                            </segmentedControl>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icn-ruler" translatesAutoresizingMaskIntoConstraints="NO" id="dRI-fS-Zw6">
                                 <rect key="frame" x="20" y="84" width="30" height="30"/>
                                 <constraints>
@@ -193,9 +183,19 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unidades" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UMO-ZE-HuV">
                                 <rect key="frame" x="58" y="88" width="73" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dkI-N2-mbZ">
+                                <rect key="frame" x="459" y="84" width="121" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="dkI-N2-mbZ" secondAttribute="height" multiplier="153:28" constant="-32" id="q0R-mk-MZh"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Cº"/>
+                                    <segment title="Fº"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

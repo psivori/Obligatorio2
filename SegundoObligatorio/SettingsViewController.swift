@@ -10,17 +10,36 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
+    let defaults = NSUserDefaults.standardUserDefaults()
     @IBOutlet weak var units: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        var savedUnits = defaults.stringForKey("units")
+        if savedUnits == String(Units.metric){
+            units.selectedSegmentIndex = 0
+        }else{
+            units.selectedSegmentIndex = 1
+        }
+        
     }
     
     @IBAction func cancel(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: {})
     }
     
     @IBAction func save(sender: AnyObject) {
-        print("save")
+        if let selected = Units(rawValue: units.selectedSegmentIndex){
+            defaults.setObject(String(selected), forKey: "units")
+            let alert = UIAlertController(title: nil, message: "Se actualizaron las unidades correctamente.", preferredStyle: UIAlertControllerStyle.Alert)
+            let okAction = UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.Default) { (action) in
+                self.dismissViewControllerAnimated(true, completion: {})
+            }
+            alert.addAction(okAction)
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+        
+       //
     }
     
 }

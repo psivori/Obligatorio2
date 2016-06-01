@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4DC55615BB4CB72AA4E0F25C /* Pods_SegundoObligatorio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539DF692394EA97B5AAE8323 /* Pods_SegundoObligatorio.framework */; };
+		8302A7E41CFF965300706862 /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8302A7E31CFF965300706862 /* Units.swift */; settings = {ASSET_TAGS = (); }; };
 		8309DAD31CF6702E000F9D1A /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8309DAD21CF6702E000F9D1A /* Forecast.swift */; settings = {ASSET_TAGS = (); }; };
 		834C0F281CEFD6DA0048808A /* APIWheater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834C0F271CEFD6DA0048808A /* APIWheater.swift */; settings = {ASSET_TAGS = (); }; };
 		8354E0BE1CF9285300E051D3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8354E0BD1CF9285300E051D3 /* SettingsViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -26,6 +27,7 @@
 		1B08157F0734E5FA3686DBAE /* Pods-SegundoObligatorio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SegundoObligatorio.release.xcconfig"; path = "Pods/Target Support Files/Pods-SegundoObligatorio/Pods-SegundoObligatorio.release.xcconfig"; sourceTree = "<group>"; };
 		539DF692394EA97B5AAE8323 /* Pods_SegundoObligatorio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SegundoObligatorio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DBB7ABF6F31237F753D7A5A /* Pods-SegundoObligatorio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SegundoObligatorio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SegundoObligatorio/Pods-SegundoObligatorio.debug.xcconfig"; sourceTree = "<group>"; };
+		8302A7E31CFF965300706862 /* Units.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Units.swift; sourceTree = "<group>"; };
 		8309DAD21CF6702E000F9D1A /* Forecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		834C0F271CEFD6DA0048808A /* APIWheater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIWheater.swift; sourceTree = "<group>"; };
 		8354E0BD1CF9285300E051D3 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +73,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8302A7E21CFF963B00706862 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				8302A7E31CFF965300706862 /* Units.swift */,
+			);
+			name = Enums;
+			sourceTree = "<group>";
+		};
 		83C9D8561CEFD4660033F8F8 /* Class */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +111,7 @@
 		F10A946A1CECD28C00536502 /* SegundoObligatorio */ = {
 			isa = PBXGroup;
 			children = (
+				8302A7E21CFF963B00706862 /* Enums */,
 				83C9D8561CEFD4660033F8F8 /* Class */,
 				F10A947D1CECD29D00536502 /* Utils */,
 				F10A947E1CECD3D300536502 /* Fonts */,
@@ -263,6 +274,7 @@
 				F10A94851CECD6EB00536502 /* WeatherIcon.swift in Sources */,
 				F10A94811CECD6E200536502 /* AppDelegate.swift in Sources */,
 				8309DAD31CF6702E000F9D1A /* Forecast.swift in Sources */,
+				8302A7E41CFF965300706862 /* Units.swift in Sources */,
 				834C0F281CEFD6DA0048808A /* APIWheater.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
