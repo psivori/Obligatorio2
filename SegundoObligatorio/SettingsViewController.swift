@@ -10,6 +10,7 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
+    let defaults = NSUserDefaults.standardUserDefaults()
     @IBOutlet weak var units: UISegmentedControl!
     
     override func viewDidLoad() {
@@ -17,12 +18,17 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func cancel(sender: AnyObject) {
-        var viewController = self.storyboard!.instantiateViewControllerWithIdentifier("viewController")
-        navigationController?.popToViewController(viewController, animated: true)
+        self.dismissViewControllerAnimated(true, completion: {})
     }
     
     @IBAction func save(sender: AnyObject) {
-        print("save")
+        defaults.setObject("metric", forKey: "units")
+        let alert = UIAlertController(title: nil, message: "Se actualizaron las unidades correctamente.", preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title: "Aceptar", style: UIAlertActionStyle.Default) { (action) in
+             self.dismissViewControllerAnimated(true, completion: {})
+        }
+        alert.addAction(okAction)
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
 }
