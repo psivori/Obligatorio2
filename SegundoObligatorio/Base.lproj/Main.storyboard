@@ -214,6 +214,9 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Kvd-oC-t4e" secondAttribute="height" multiplier="49:31" id="UFr-ht-eBr"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="changeLocationSettings:" destination="oRx-v4-cMl" eventType="valueChanged" id="dyS-Ym-GKj"/>
+                                </connections>
                             </switch>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gN0-oi-FIx">
                                 <rect key="frame" x="0.0" y="178" width="600" height="422"/>

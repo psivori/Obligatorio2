@@ -13,6 +13,7 @@ class SettingsViewController: UIViewController {
 
     let defaults = NSUserDefaults.standardUserDefaults()
     @IBOutlet weak var units: UISegmentedControl!
+    @IBOutlet weak var location: UISwitch!
     @IBOutlet weak var map: MKMapView!
     
     override func viewDidLoad() {
@@ -29,13 +30,14 @@ class SettingsViewController: UIViewController {
         //setting selected location
         
         //showing map with zoom and marker
-        var coordinates = defaults.objectForKey("coordinates") as! CLLocationCoordinate2D
-        //var pinLocation : CLLocationCoordinate2D = CLLocationCoordinate2DMake(coordinates.latitude, coordinates.longitude)
+        var pinLocation : CLLocationCoordinate2D = CLLocationCoordinate2DMake(defaults.doubleForKey("currentLatitude"), defaults.doubleForKey("currentLongitude"))
         var objectAnnotation = MKPointAnnotation()
-        objectAnnotation.coordinate = coordinates
+        objectAnnotation.coordinate = pinLocation
         objectAnnotation.title = "yo"
         self.map.addAnnotation(objectAnnotation)
-        self.map.setCenterCoordinate(coordinates, animated: true)
+        var span = MKCoordinateSpanMake(0.075, 0.075)
+        var region = MKCoordinateRegion(center: pinLocation, span: span)
+        self.map.setRegion(region, animated: true)
     }
     
     @IBAction func cancel(sender: AnyObject) {
@@ -52,6 +54,10 @@ class SettingsViewController: UIViewController {
         }
         alert.addAction(okAction)
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func changeLocationSettings(sender: AnyObject) {
+        self.map.hidden = self.location.selected;
     }
     
 }
