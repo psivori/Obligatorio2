@@ -84,15 +84,15 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="ICON" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pil-JN-VZP">
-                                                    <rect key="frame" x="39" y="48" width="51" height="33"/>
-                                                    <fontDescription key="fontDescription" name="WeatherIcons-Regular" family="Weather Icons" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UT5-Ra-XPA">
+                                                    <rect key="frame" x="38" y="8" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UT5-Ra-XPA">
-                                                    <rect key="frame" x="38" y="8" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="ICON" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pil-JN-VZP">
+                                                    <rect key="frame" x="38" y="30" width="43" height="62"/>
+                                                    <fontDescription key="fontDescription" name="WeatherIcons-Regular" family="Weather Icons" pointSize="35"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -100,13 +100,13 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="UT5-Ra-XPA" secondAttribute="trailing" constant="20" id="GlG-WV-mIQ"/>
-                                            <constraint firstAttribute="trailing" secondItem="pil-JN-VZP" secondAttribute="trailing" constant="20" id="Rjx-xN-Hux"/>
-                                            <constraint firstItem="pil-JN-VZP" firstAttribute="top" secondItem="UT5-Ra-XPA" secondAttribute="bottom" constant="19" id="cQs-F4-7vA"/>
-                                            <constraint firstItem="znO-qL-rXG" firstAttribute="top" secondItem="pil-JN-VZP" secondAttribute="bottom" constant="19" id="o2U-qS-JiP"/>
-                                            <constraint firstItem="UT5-Ra-XPA" firstAttribute="top" secondItem="sX7-us-pQp" secondAttribute="top" constant="10" id="pMK-VM-Fez"/>
-                                            <constraint firstAttribute="bottom" secondItem="znO-qL-rXG" secondAttribute="bottom" constant="10" id="tnK-hB-ROe"/>
-                                            <constraint firstAttribute="trailing" secondItem="znO-qL-rXG" secondAttribute="trailing" constant="20" id="uu5-Qi-vdl"/>
+                                            <constraint firstAttribute="trailing" secondItem="UT5-Ra-XPA" secondAttribute="trailing" constant="38" id="GlG-WV-mIQ"/>
+                                            <constraint firstAttribute="trailing" secondItem="pil-JN-VZP" secondAttribute="trailing" constant="37" id="Rjx-xN-Hux"/>
+                                            <constraint firstItem="pil-JN-VZP" firstAttribute="top" secondItem="UT5-Ra-XPA" secondAttribute="bottom" constant="1" id="cQs-F4-7vA"/>
+                                            <constraint firstItem="znO-qL-rXG" firstAttribute="top" secondItem="pil-JN-VZP" secondAttribute="bottom" constant="1" id="o2U-qS-JiP"/>
+                                            <constraint firstItem="UT5-Ra-XPA" firstAttribute="top" secondItem="sX7-us-pQp" secondAttribute="top" constant="8" id="pMK-VM-Fez"/>
+                                            <constraint firstAttribute="bottom" secondItem="znO-qL-rXG" secondAttribute="bottom" constant="8" id="tnK-hB-ROe"/>
+                                            <constraint firstAttribute="trailing" secondItem="znO-qL-rXG" secondAttribute="trailing" constant="38" id="uu5-Qi-vdl"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="lblDay" destination="UT5-Ra-XPA" id="W4O-pM-7lj"/>

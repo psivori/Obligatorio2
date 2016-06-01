@@ -19,6 +19,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var collectionView: UICollectionView!
     let reuseIdentifier = "cell"
     var lstDays = [Day]()
+    let defaults = NSUserDefaults.standardUserDefaults()
+    var units : String = "imperial"//FAHRENHEIT
+    //units=imperial
+    //units=metric
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +33,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 //        http://openweathermap.org/weather-conditions
         
 
-
+        //self.units = defaults.stringForKey("units")!
         self.weatherIconLabel.text = WeatherIcon(condition: 200, iconString: "01n").iconText
     }
     
@@ -54,13 +58,27 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! MyCollectionViewCell
         
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
+        if(self.lstDays.count > 0){
         cell.lblDay.text = self.lstDays[indexPath.item].name
-        cell.lblTemp.text = self.lstDays[indexPath.item].temp
-        cell.lblIcon.text = WeatherIcon(condition: Int(self.lstDays[indexPath.item].condition!), iconString: String(self.lstDays[indexPath.item].icon) ).iconText
-        //cell.myLabel.text = self.items[indexPath.item]
-        //cell.backgroundColor = UIColor.yellowColor() // make cell more visible in our example project
         
-        return cell
+            let temp : String
+            let degrees  = String(((self.lstDays[indexPath.item].temp!) as NSString).integerValue)
+            //let degreesStr = String(degreesInt)
+            //print (degrees)
+            if(self.units == "imperial"){
+                //print(self.lstDays[indexPath.item].temp!)
+                //print((self.lstDays[ indexPath.item].temp! as NSString).integerValue)
+                temp = degrees + " \u{2109}"// FAHRENHEIT
+            }else{
+                temp = degrees + " \u{2103}"// Celsius
+            }
+
+            cell.lblTemp.text = temp
+            cell.lblIcon.text = WeatherIcon(condition: Int(self.lstDays[indexPath.item].condition!), iconString: String(self.lstDays[indexPath.item].icon) ).iconText
+            //cell.myLabel.text = self.items[indexPath.item]
+            //cell.backgroundColor = UIColor.yellowColor() // make cell more visible in our example project
+            }
+            return cell
     }
     
     // MARK: - UICollectionViewDelegate protocol
@@ -86,10 +104,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                         // something went wrong
                 }
                 
-                var units = "imperial"//FAHRENHEIT
-                //units=imperial
-                //units=metric
-                APIWheater.sharedWheater.forecastOnCompletion(String(location!.coordinate.latitude), longitude: String(location!.coordinate.longitude), units: units) { (forecasts, error) -> Void in
+                
+                APIWheater.sharedWheater.forecastOnCompletion(String(location!.coordinate.latitude), longitude: String(location!.coordinate.longitude), units: self.units) { (forecasts, error) -> Void in
                     
                     if let forecasts = forecasts {
                         
@@ -103,7 +119,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                         //Showing temperature
                         if(forecasts[0].temp != nil ){
                             let temp : String
-                            if(units == "imperial"){
+                            if(self.units == "imperial"){
                                     temp = String(Int(forecasts[0].temp!)) + " \u{2109}"// FAHRENHEIT
                             }else{
                                     temp = String(Int(forecasts[0].temp!)) + " \u{2103}"// Celsius
