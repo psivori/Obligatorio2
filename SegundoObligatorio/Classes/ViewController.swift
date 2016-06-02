@@ -9,7 +9,7 @@
 import UIKit
 import SwiftLocation
 import SwiftyJSON
-
+import MapKit
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
@@ -21,21 +21,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     let reuseIdentifier = "cell"
     var lstDays = [Day]()
     let defaults = NSUserDefaults.standardUserDefaults()
-    var units : String = "metric"//FAHRENHEIT
-    //units=imperial
-    //units=metric
+    var units : String = "metric"//celsius
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        condition: weather.id
-//        iconString: weather.icon
-//        ver: http://openweathermap.org/current#parameter
-//        http://openweathermap.org/weather-conditions
-        
-        
-       
-        //self.weatherIconLabel.text = WeatherIcon(condition: 200, iconString: "01n").iconText
     }
     
     override func didReceiveMemoryWarning() {
@@ -64,11 +53,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
             let temp : String
             let degrees  = String(((self.lstDays[indexPath.item].temp!) as NSString).integerValue)
-            //let degreesStr = String(degreesInt)
-            //print (degrees)
             if(self.units == "imperial"){
-                //print(self.lstDays[indexPath.item].temp!)
-                //print((self.lstDays[ indexPath.item].temp! as NSString).integerValue)
                 temp = degrees + " \u{2109}"// FAHRENHEIT
             }else{
                 temp = degrees + " \u{2103}"// Celsius
@@ -76,19 +61,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
             cell.lblTemp.text = temp
             cell.lblIcon.text = WeatherIcon(condition: Int(self.lstDays[indexPath.item].condition!), iconString: String(self.lstDays[indexPath.item].icon) ).iconText
-            //cell.myLabel.text = self.items[indexPath.item]
-            //cell.backgroundColor = UIColor.yellowColor() // make cell more visible in our example project
             }
             return cell
     }
     
-    // MARK: - UICollectionViewDelegate protocol
-    
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        // handle tap events
-        //print("You selected cell #\(indexPath.item)!")
-    }
+
     
     override func viewDidAppear(animated: Bool) {
         
@@ -103,53 +80,51 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             
             try SwiftLocation.shared.currentLocation(Accuracy.Neighborhood, timeout: 20, onSuccess: { (location) -> Void in
                 
-                var lat :String
-                var lng :String
+                var myLocation = location?.coordinate
+                
+                var lat :Double
+                var lng :Double
                 
                 if self.defaults.boolForKey("currentLocation"){
-                    
-                    lat = String(location!.coordinate.latitude)
-                    lng = String(location!.coordinate.longitude)
-                    
-                    self.defaults.setDouble(location!.coordinate.latitude, forKey: "currentLatitude")
-                    self.defaults.setDouble(location!.coordinate.longitude, forKey: "currentLongitude")
+                    lat = location!.coordinate.latitude
+                    lng = location!.coordinate.longitude
+                    self.defaults.setDouble(lat, forKey: "currentLatitude")
+                    self.defaults.setDouble(lng, forKey: "currentLongitude")
                 }else{
-                    lat = String(self.defaults.doubleForKey("currentLatitude"))
-                    lng = String(self.defaults.doubleForKey("currentLongitude"))
-                
+                    lat = self.defaults.doubleForKey("currentLatitude")
+                    lng = self.defaults.doubleForKey("currentLongitude")
+                    myLocation = CLLocationCoordinate2D(latitude: lat, longitude: lng)
                 }
                 
-                
-
-                /*
-                SwiftLocation.shared.reverseCoordinates(Service.Apple, coordinates: location!.coordinate, onSuccess: { (place) -> Void in
+                SwiftLocation.shared.reverseCoordinates(Service.Apple, coordinates: myLocation!, onSuccess: { (place) -> Void in
                     // our placemark is here
-                    //print(place!.locality)
                     self.lblCity.text = place!.locality
-                    
-                    
+                    print(place!.locality)
                     }) { (error) -> Void in
                         // something went wrong
-                }*/
+                }
                 
-                
-                APIWheater.sharedWheater.forecastOnCompletion(lat, longitude: lng, units: self.units) { (forecasts, error) -> Void in
-                    
+                APIWheater.sharedWheater.forecastOnCompletion(String(lat), longitude: String(lng), units: self.units) { (forecasts, error) -> Void in
                     if let forecasts = forecasts {
                         
                         //Load Days
+                        self.lstDays.removeAll()
+                        var first: Bool = false
                         for fcast in forecasts{
                             let day = Day(name: fcast.day!, andicon: String(fcast.icon!), andtemp: String(fcast.temp!), andCondition: Int(fcast.condition!))
-                            self.lstDays.append(day)
+                            if !first{
+                                first = true
+                            }else{
+                                self.lstDays.append(day)
+                            }
                         }
                         
                         //Forecast for current date always in first position
                         //Showing temperature
-                        //let degrees  = String(((forecasts[0].temp!) as NSString).integerValue)
                         if(forecasts[0].temp != nil ){
                             let temp : String
                             if(self.units == "imperial"){
-                                    temp = String(Int(forecasts[0].temp!)) + " \u{2109}"// FAHRENHEIT
+                                    temp = String(Int(forecasts[0].temp!)) + " \u{2109}"//FAHRENHEIT
                             }else{
                                     temp = String(Int(forecasts[0].temp!)) + " \u{2103}"// Celsius
                             }
@@ -159,15 +134,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                             self.lblTemperature.text = "No temperature"
                         }
                         //Showing icon
-                        //print(forecasts[0].icon)
-                        //print(forecasts[0].day)
                         if(forecasts[0].icon != nil ){
                             
                             self.weatherIconLabel.text = WeatherIcon(condition: Int(self.lstDays[0].condition!), iconString: String(self.lstDays[0].icon) ).iconText
-                        }else{
-                            //Poner un icono de no disponible
                         }
-                        
                         self.collectionView.reloadData()
                         
                     }else {
@@ -178,7 +148,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                     
                 }
                 
-                sleep(2)
                 self.activityIndicator.stopAnimating()
                 }) { (error) -> Void in
                     // something went wrong
