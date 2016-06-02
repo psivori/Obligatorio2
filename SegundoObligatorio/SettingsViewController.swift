@@ -30,7 +30,14 @@ class SettingsViewController: UIViewController {
         //setting selected location
         self.locationSettings.on = defaults.boolForKey("currentLocation")
         self.map.hidden = self.locationSettings.on;
+        
+        let longPressed = UILongPressGestureRecognizer(target: self, action:"addAnnotation:")
+        longPressed.minimumPressDuration = 0.5
+        self.map.addGestureRecognizer(longPressed)
+
         self.map.delegate = self
+        
+        
         //showing map with zoom and marker
 
         var pinLocation : CLLocationCoordinate2D = CLLocationCoordinate2DMake(defaults.doubleForKey("currentLatitude"), defaults.doubleForKey("currentLongitude"))
@@ -70,6 +77,18 @@ class SettingsViewController: UIViewController {
     
     @IBAction func changeLocationSettings(sender: UISwitch) {
         self.map.hidden = sender.on;
+    }
+    
+    func addAnnotation(sender:UILongPressGestureRecognizer){
+        if sender.state == UIGestureRecognizerState.Began {
+            let allAnnotations = self.map.annotations
+            self.map.removeAnnotations(allAnnotations)
+            let point = sender.locationInView(self.map)
+            let coord:CLLocationCoordinate2D = self.map.convertPoint(point, toCoordinateFromView: self.map)
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = coord
+            self.map.addAnnotation(annotation)
+        }
     }
     
 }
