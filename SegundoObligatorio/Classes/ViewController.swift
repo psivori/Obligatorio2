@@ -102,11 +102,26 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         do {
             
             try SwiftLocation.shared.currentLocation(Accuracy.Neighborhood, timeout: 20, onSuccess: { (location) -> Void in
+                
+                var lat :String
+                var lng :String
+                
                 if self.defaults.boolForKey("currentLocation"){
+                    
+                    lat = String(location!.coordinate.latitude)
+                    lng = String(location!.coordinate.longitude)
+                    
                     self.defaults.setDouble(location!.coordinate.latitude, forKey: "currentLatitude")
                     self.defaults.setDouble(location!.coordinate.longitude, forKey: "currentLongitude")
+                }else{
+                    lat = String(self.defaults.doubleForKey("currentLatitude"))
+                    lng = String(self.defaults.doubleForKey("currentLongitude"))
+                
                 }
+                
+                
 
+                /*
                 SwiftLocation.shared.reverseCoordinates(Service.Apple, coordinates: location!.coordinate, onSuccess: { (place) -> Void in
                     // our placemark is here
                     //print(place!.locality)
@@ -115,10 +130,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                     
                     }) { (error) -> Void in
                         // something went wrong
-                }
+                }*/
                 
                 
-                APIWheater.sharedWheater.forecastOnCompletion(String(location!.coordinate.latitude), longitude: String(location!.coordinate.longitude), units: self.units) { (forecasts, error) -> Void in
+                APIWheater.sharedWheater.forecastOnCompletion(lat, longitude: lng, units: self.units) { (forecasts, error) -> Void in
                     
                     if let forecasts = forecasts {
                         
