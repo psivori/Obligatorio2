@@ -218,15 +218,15 @@
                                     <action selector="changeLocationSettings:" destination="oRx-v4-cMl" eventType="valueChanged" id="dyS-Ym-GKj"/>
                                 </connections>
                             </switch>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gN0-oi-FIx">
-                                <rect key="frame" x="0.0" y="178" width="600" height="422"/>
-                            </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unidades" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UMO-ZE-HuV">
                                 <rect key="frame" x="58" y="88" width="73" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gN0-oi-FIx">
+                                <rect key="frame" x="0.0" y="178" width="600" height="422"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -261,6 +261,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="locationSettings" destination="Kvd-oC-t4e" id="onE-dJ-3wO"/>
                         <outlet property="map" destination="gN0-oi-FIx" id="YQb-cn-hxb"/>
                         <outlet property="units" destination="dkI-N2-mbZ" id="kRY-Kx-LzH"/>
                     </connections>

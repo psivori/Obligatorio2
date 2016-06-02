@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4DC55615BB4CB72AA4E0F25C /* Pods_SegundoObligatorio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539DF692394EA97B5AAE8323 /* Pods_SegundoObligatorio.framework */; };
 		8302A7E41CFF965300706862 /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8302A7E31CFF965300706862 /* Units.swift */; settings = {ASSET_TAGS = (); }; };
+		8302A7E61CFFBA0A00706862 /* CustomMKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8302A7E51CFFBA0A00706862 /* CustomMKMapView.swift */; settings = {ASSET_TAGS = (); }; };
 		8309DAD31CF6702E000F9D1A /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8309DAD21CF6702E000F9D1A /* Forecast.swift */; settings = {ASSET_TAGS = (); }; };
 		834C0F281CEFD6DA0048808A /* APIWheater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834C0F271CEFD6DA0048808A /* APIWheater.swift */; settings = {ASSET_TAGS = (); }; };
 		8354E0BE1CF9285300E051D3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8354E0BD1CF9285300E051D3 /* SettingsViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -28,6 +29,7 @@
 		539DF692394EA97B5AAE8323 /* Pods_SegundoObligatorio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SegundoObligatorio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DBB7ABF6F31237F753D7A5A /* Pods-SegundoObligatorio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SegundoObligatorio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SegundoObligatorio/Pods-SegundoObligatorio.debug.xcconfig"; sourceTree = "<group>"; };
 		8302A7E31CFF965300706862 /* Units.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Units.swift; sourceTree = "<group>"; };
+		8302A7E51CFFBA0A00706862 /* CustomMKMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMKMapView.swift; sourceTree = "<group>"; };
 		8309DAD21CF6702E000F9D1A /* Forecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		834C0F271CEFD6DA0048808A /* APIWheater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIWheater.swift; sourceTree = "<group>"; };
 		8354E0BD1CF9285300E051D3 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				F10A94771CECD28C00536502 /* Info.plist */,
 				834C0F271CEFD6DA0048808A /* APIWheater.swift */,
 				8309DAD21CF6702E000F9D1A /* Forecast.swift */,
+				8302A7E51CFFBA0A00706862 /* CustomMKMapView.swift */,
 			);
 			path = SegundoObligatorio;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 			files = (
 				8354FED61CF91142000671BF /* Day.swift in Sources */,
 				F10A94841CECD6EB00536502 /* ViewController.swift in Sources */,
+				8302A7E61CFFBA0A00706862 /* CustomMKMapView.swift in Sources */,
 				83C9D8581CEFD4FB0033F8F8 /* MyCollectionViewCell.swift in Sources */,
 				8354E0BE1CF9285300E051D3 /* SettingsViewController.swift in Sources */,
 				F10A94851CECD6EB00536502 /* WeatherIcon.swift in Sources */,
