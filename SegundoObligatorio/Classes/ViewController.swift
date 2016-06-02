@@ -128,6 +128,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                         
                         //Forecast for current date always in first position
                         //Showing temperature
+                        //let degrees  = String(((forecasts[0].temp!) as NSString).integerValue)
                         if(forecasts[0].temp != nil ){
                             let temp : String
                             if(self.units == "imperial"){

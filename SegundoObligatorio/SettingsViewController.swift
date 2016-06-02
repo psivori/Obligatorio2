@@ -45,7 +45,7 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func save(sender: AnyObject) {
-        let selected = Units(rawValue: units.selectedSegmentIndex)
+        if let selected = Units(rawValue: units.selectedSegmentIndex){
         defaults.setObject(String(selected), forKey: "units")
         //defaults.setObject(, forKey: "coordinates")
         let alert = UIAlertController(title: nil, message: "Los ajustes se actualizaron correctamente.", preferredStyle: UIAlertControllerStyle.Alert)
@@ -54,6 +54,7 @@ class SettingsViewController: UIViewController {
         }
         alert.addAction(okAction)
         self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func changeLocationSettings(sender: AnyObject) {
